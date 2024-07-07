@@ -2,7 +2,6 @@ import requests
 import os
 import sys
 from datetime import datetime, timedelta
-
 from utils.config_loader import ConfigLoader
 from utils.logger import setup_logger
 
@@ -10,7 +9,7 @@ from utils.logger import setup_logger
 class ExchangeRateFetcher:
     def __init__(self):
         """
-        Initialize the ExchangeRateFetcher instance.
+        Initialize the ExchangeRateFetcher
         """
         config_file = "config_" + os.path.splitext(os.path.basename(__file__))[0] + ".json"
         self.config_loader = ConfigLoader(module_config_file=config_file)
@@ -18,56 +17,55 @@ class ExchangeRateFetcher:
         self.env_variables = self.config_loader.get_env_variables()
         self.common_config = self.config_loader.get_common_config()
         self.module_config = self.config_loader.get_module_config()
+        self.current_datetime = datetime.now()
+        self._load_config()
+
+    def _load_config(self):
+        """
+         Variables to be used in this script
+        """
+        # Assigning Variables from configurations
+        self.log_file = self.env_variables.get('LOG_FILE')+"."+self.current_datetime.strftime('%Y-%m-%d')+".log"
+        self.access_key = self.env_variables.get('API_KEY')
+        self.api_url = self.module_config.get("api_url")
+        self.end_point = self.module_config.get("end_point")
+        self.defaults_exchange_rate = self.common_config.get('defaults_exchange_rate', {})
+        self.days = self.defaults_exchange_rate.get('days')
+        self.base_currency = self.defaults_exchange_rate.get('base_currency')
+        self.target_currency = self.defaults_exchange_rate.get('target_currency')
+
+        # Calculate start and end dates for fetching data
+        self.start_date = (self.current_datetime - timedelta(days=self.days)).strftime('%Y-%m-%d')
+        self.end_date = self.current_datetime.strftime('%Y-%m-%d')
 
     def get_exchange_rates(self):
         """
-        Fetch exchange rates from an API using configured parameters.
+        Fetch exchange rates from an API using configured parameters
 
-        Returns: JSON data containing exchange rates.
+        Returns: JSON data containing exchange rates of between two currencies
         """
-        # Extract variables from configurations
+
+        # Setup Logger
         script_name = os.path.basename(__file__)
-        log_file = self.env_variables.get('LOG_FILE')
-        logger = setup_logger(script_name, log_file)
-        logger.info("Setting up Variables")
-
-        # Assigning Variables from configurations
-        access_key = self.env_variables.get('API_KEY')
-        base_url = self.module_config.get("url_timeseries")
-        defaults_exchange_rate = self.common_config.get('defaults_exchange_rate', {})
-        days = defaults_exchange_rate.get('days')
-        base_currency = defaults_exchange_rate.get('base_currency')
-        target_currency = defaults_exchange_rate.get('target_currency')
-
-        # Calculate start and end dates for fetching data
-        logger.info("Calculate dates to fetch the exchange rates")
-        current_datetime = datetime.now()
-        start_date = (current_datetime - timedelta(days=days)).strftime('%Y-%m-%d')
-        end_date = current_datetime.strftime('%Y-%m-%d')
-
-        # For Debugging Purpose
-        logger.debug("Configuration Values")
-        logger.debug(f"log_file: {log_file}")
-        logger.debug(f"base_url: {base_url}")
-        logger.debug(f"days: {days}")
-        logger.debug(f"base_currency: {base_currency}")
-        logger.debug(f"target_currency: {target_currency}")
-        logger.debug(f"start_date: {start_date}")
-        logger.debug(f"end_date: {end_date}")
-
+        logger = setup_logger(script_name, self.log_file)
+        logger.info(f"Preparing Parameters for API request")
         # Prepare parameters for API request
         params = {
-            "access_key": access_key,
-            "start_date": start_date,
-            "end_date": end_date,
-            "base": base_currency,
-            "symbols": target_currency
+            "access_key": self.access_key,
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+            "base": self.base_currency,
+            "symbols": self.target_currency
         }
+        # Display parameters except for access_key
+        params_for_log_display = dict(params)
+        params_for_log_display.pop("access_key", None)
+        logger.info(f"Parameters for API request: {params_for_log_display}")
 
         try:
-            logger.info(f"Making GET request to the API - {base_url}")
-            base_url = "https://api.exchangeratesapi.io/v1/timeseries"
-            #response = requests.get(base_url, params=params)
+            url = f"{self.api_url}/{self.end_point}"
+            logger.info(f"Making GET request to the API - {url}")
+            #response = requests.get(url, params=params)
             #response.raise_for_status()
             #data = response.json()
 
@@ -86,11 +84,7 @@ class ExchangeRateFetcher:
                        '2024-07-03': {'NZD': 1.098792}, '2024-07-04': {'NZD': 1.10017}, '2024-07-05': {'NZD': 1.098888},
                        '2024-07-06': {'NZD': 1.100644}}}
 
-
-
-
             return data
         except requests.exceptions.RequestException as e:
             logger.error(f"Error fetching data: {e}")
             sys.exit(1)  # Exit with a non-zero status to indicate an error
-
