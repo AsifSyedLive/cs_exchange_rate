@@ -1,4 +1,3 @@
-# Import necessary modules and functions
 import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
@@ -8,8 +7,13 @@ from exchange_rate.exchange_rate_fetcher import ExchangeRateFetcher
 from exchange_rate.exchange_rate_preprocess import ExchangeRatePreProcessor
 #from exchange_rate.exchange_rate_analyzer import ExchangeRateAnalyzer
 
-# Function to initialize environment variables
 def init_variables():
+    """
+    Initialize environment variables using ConfigLoader.
+
+    Returns:
+        dict: Environment variables loaded from configuration.
+    """
     config_loader = ConfigLoader()
     env_variables = config_loader.get_env_variables()
     return env_variables
@@ -27,12 +31,10 @@ def main():
     json_data_file = fetcher.get_exchange_rates()
 
     processor = ExchangeRatePreProcessor(json_data_file)
-    processor.process_data()
+    json_data_file_processed=processor.process_data()
 
     # Print processed data
-    #print(json.dumps(processed_data, indent=2))
-
-    #analyzer - ExchangeRate
+    print(json_data_file_processed)
 
     # Create an instance of ExchangeRateAnalyzer
     #analyzer = ExchangeRateAnalyzer(data_str)
@@ -52,3 +54,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
