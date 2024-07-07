@@ -1,13 +1,12 @@
 import os
-import sys
-import logging
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from utils.logger import setup_logger
 from utils.config_loader import ConfigLoader
 from exchange_rate.exchange_rate_fetcher import ExchangeRateFetcher
-from exchange_rate.exchange_rate_preprocess import Preprocess
-from exchange_rate.exchange_rate_analyzer import ExchangeRateAnalyzer
+#from exchange_rate.exchange_rate_preprocess import Preprocess
+#from exchange_rate.exchange_rate_analyzer import ExchangeRateAnalyzer
+
 
 def init_variables():
     config_loader = ConfigLoader()

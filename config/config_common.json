@@ -1,0 +1,7 @@
+{
+  "defaults_exchange_rate": {
+    "days": 30,
+    "base_currency": "AUD",
+    "target_currency": "NZD"
+  }
+}

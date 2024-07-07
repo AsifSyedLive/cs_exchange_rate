@@ -1,0 +1,5 @@
+{
+  "url_timeseries": "https://api.exchangeratesapi.io/v1/timeseries",
+  "configure_start_date": "",
+  "configure_end_date":""
+}
