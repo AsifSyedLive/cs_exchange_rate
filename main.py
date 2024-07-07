@@ -4,6 +4,7 @@ from utils.logger import setup_logger
 from utils.config_loader import ConfigLoader
 from exchange_rate.exchange_rate_fetcher import ExchangeRateFetcher
 from exchange_rate.exchange_rate_preprocess import ExchangeRatePreProcessor
+from exchange_rate.exchange_rate_analyze import ExchangeRateAnalyzer
 
 
 def init_variables():
@@ -56,7 +57,7 @@ def main():
     print(json_data_file_processed)
 
     # Create an instance of ExchangeRateAnalyzer
-    #analyzer = ExchangeRateAnalyzer(data_str)
+    analyzer = ExchangeRateAnalyzer()
 
     # Retrieve and print results
     #min_date, min_rate, max_date, max_rate = analyzer.find_min_max_rates()

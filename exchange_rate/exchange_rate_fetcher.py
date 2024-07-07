@@ -13,7 +13,7 @@ class ExchangeRateFetcher:
         """
         config_file = "config_" + os.path.splitext(os.path.basename(__file__))[0] + ".json"
         self.config_loader = ConfigLoader(module_config_file=config_file)
-
+        print(self.config_loader.get_env_variables())
         self.env_variables = self.config_loader.get_env_variables()
         self.common_config = self.config_loader.get_common_config()
         self.module_config = self.config_loader.get_module_config()
@@ -49,6 +49,7 @@ class ExchangeRateFetcher:
         script_name = os.path.basename(__file__)
         logger = setup_logger(script_name, self.log_file)
         logger.info(f"Preparing Parameters for API request")
+
         # Prepare parameters for API request
         params = {
             "access_key": self.access_key,

@@ -50,12 +50,13 @@ class ExchangeRatePreProcessor:
 
         iteration_date = datetime.strptime(self.start_date, '%Y-%m-%d').date()
         end_date_dt = datetime.strptime(self.end_date, '%Y-%m-%d').date()
-
+        # Generating Required Dates Dict for comparison with extracted dates
         while iteration_date <= end_date_dt:
             iteration_date_str = iteration_date.strftime("%Y-%m-%d")
             required_dates.append(iteration_date_str)
             iteration_date += timedelta(days=1)
 
+        # Interpolating missing data (required dates was already derived earlier)
         processed_data = {}
         for date in required_dates:
             if date not in existing_dates:
@@ -67,6 +68,12 @@ class ExchangeRatePreProcessor:
         return self.json_data
 
     def interpolate_value(self, rates_data, date):
+        """
+        Interpolates missing values by taking average of previous and next values.
+        In absence of either of them i.e. previous or next, then same value is used for both whichever is available
+
+        Returns: calculated value for interpolation (float)
+        """
         prev_date, next_date = self.find_nearest_dates(rates_data, date)
         if not prev_date and not next_date:
             return None
@@ -84,6 +91,11 @@ class ExchangeRatePreProcessor:
         return interpolated_value
 
     def find_nearest_dates(self, rates_data, date):
+        """
+        Finds dates on the left/right side of the date passed as an argument inside the dictionary
+
+        Returns: two dates - previous date and next date available in dict
+        """
         dates = list(rates_data.keys())
         dates.sort()
         prev_date, next_date = None, None

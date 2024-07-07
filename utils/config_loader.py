@@ -20,13 +20,16 @@ class ConfigLoader:
             self.load_json_config(self.module_config_file, self.module_config)
 
     def load_env_config(self):
-        load_dotenv(self.env_file)
-        self.env_config = {
-            'BASE_PATH': os.getenv('BASE_PATH'),
-            'API_KEY': os.getenv('API_KEY'),
-            'LOG_DIR': os.getenv('LOG_DIR'),
-            'LOG_FILE': os.getenv('LOG_FILE')
-        }
+        try:
+            load_dotenv(self.env_file)
+            self.env_config = {
+                'BASE_PATH': os.getenv('BASE_PATH'),
+                'API_KEY': os.getenv('API_KEY'),
+                'LOG_DIR': os.getenv('LOG_DIR'),
+                'LOG_FILE': os.getenv('LOG_FILE')
+            }
+        except Exception as e:
+            print(f"Error loading environment variables: {e}")
 
     def load_json_config(self, config_file, config_dict):
         try:
