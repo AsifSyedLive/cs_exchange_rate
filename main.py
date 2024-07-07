@@ -1,34 +1,33 @@
+# Import necessary modules and functions
 import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from utils.logger import setup_logger
 from utils.config_loader import ConfigLoader
 from exchange_rate.exchange_rate_fetcher import ExchangeRateFetcher
-#from exchange_rate.exchange_rate_preprocess import Preprocess
+from exchange_rate.exchange_rate_preprocess import ExchangeRatePreProcessor
 #from exchange_rate.exchange_rate_analyzer import ExchangeRateAnalyzer
 
-
+# Function to initialize environment variables
 def init_variables():
     config_loader = ConfigLoader()
     env_variables = config_loader.get_env_variables()
     return env_variables
-
+# Main function to execute the script
 def main():
     env_variables = init_variables()
     log_file=env_variables['LOG_FILE']
-
+    # Set up logger
     script_name = os.path.basename(__file__)
     logger=setup_logger(script_name,log_file)
-
+    # Log the start of the process
     logger.info("Initiating process to retrieve exchange rates")
     fetcher = ExchangeRateFetcher()
+    # Fetch exchange rates data
+    json_data_file = fetcher.get_exchange_rates()
 
-    data = fetcher.get_exchange_rates()
-    print(data)
-
-    # Instantiate and preprocess JSON data
-    #preprocessor = JsonPreprocess(json_data)
-    #processed_data = preprocessor.preprocess()
+    processor = ExchangeRatePreProcessor(json_data_file)
+    processor.process_data()
 
     # Print processed data
     #print(json.dumps(processed_data, indent=2))

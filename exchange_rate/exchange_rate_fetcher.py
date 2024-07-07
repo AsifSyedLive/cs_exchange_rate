@@ -1,7 +1,6 @@
 import requests
 import os
 import sys
-import configparser
 from datetime import datetime, timedelta
 
 from utils.config_loader import ConfigLoader
@@ -48,14 +47,14 @@ class ExchangeRateFetcher:
         logger.debug(f"end_date: {end_date}")
         params = {
             "access_key": {access_key},
-            "start_date":{start_date},
-            "end_date":{end_date},
-            "base":{base_currency},
-            "symbols":{target_currency}
+            "start_date": {start_date},
+            "end_date": {end_date},
+            "base": {base_currency},
+            "symbols": {target_currency}
         }
         try:
             logger.info(f"Raising GET request to the API - {base_url}")
-            #base_url="https://api.exchangeratesapi.io/v1/timeseries"
+            base_url = "https://api.exchangeratesapi.io/v1/timeseries"
             #response = requests.get(base_url, params=params)
             #response.raise_for_status()
             #data = response.json()
@@ -79,3 +78,4 @@ class ExchangeRateFetcher:
         except requests.exceptions.RequestException as e:
             logger.error(f"Error fetching data: {e}")
             return sys.exit(1)  # Exit with a non-zero status to indicate an error
+        
