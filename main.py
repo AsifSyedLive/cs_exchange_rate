@@ -37,7 +37,6 @@ def main():
     """
     # Fetch Variables to configure
     config_dict = init_variables()
-    print(config_dict['log_file'])
     # Set up logger
     script_name = os.path.basename(__file__)
     logger = setup_logger(script_name, config_dict['log_file'])
@@ -47,17 +46,21 @@ def main():
 
     # Fetch exchange rates data
     fetcher = ExchangeRateFetcher()
-    json_data_file = fetcher.get_exchange_rates()
+    exchange_rate_json = fetcher.get_exchange_rates()
 
     logger.info("Preprocess data to fix date/rates anomalies")
-    processor = ExchangeRatePreProcessor(json_data_file)
-    json_data_file_processed = processor.process_data()
-
-    # Print processed data
-    print(json_data_file_processed)
+    processor = ExchangeRatePreProcessor(exchange_rate_json)
+    exchange_rate_processed = processor.process_data()
 
     # Create an instance of ExchangeRateAnalyzer
-    analyzer = ExchangeRateAnalyzer()
+    analyzer = ExchangeRateAnalyzer(exchange_rate_processed)
+
+    # Perform trend analysis
+    analyzer.trend_analysis()
+
+    # Visualize data
+    analyzer.visualize_data()
+
 
     # Retrieve and print results
     #min_date, min_rate, max_date, max_rate = analyzer.find_min_max_rates()

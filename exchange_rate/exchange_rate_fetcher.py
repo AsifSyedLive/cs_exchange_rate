@@ -4,39 +4,20 @@ import sys
 from datetime import datetime, timedelta
 from utils.config_loader import ConfigLoader
 from utils.logger import setup_logger
+from . import *
 
 
 class ExchangeRateFetcher:
     def __init__(self):
         """
-        Initialize the ExchangeRateFetcher
+        Initialize the ExchangeRateFetcher with module level variables
         """
         config_file = "config_" + os.path.splitext(os.path.basename(__file__))[0] + ".json"
-        self.config_loader = ConfigLoader(module_config_file=config_file)
-        print(self.config_loader.get_env_variables())
-        self.env_variables = self.config_loader.get_env_variables()
-        self.common_config = self.config_loader.get_common_config()
-        self.module_config = self.config_loader.get_module_config()
-        self.current_datetime = datetime.now()
-        self._load_config()
-
-    def _load_config(self):
-        """
-         Variables to be used in this script
-        """
+        config_loader = ConfigLoader(module_config_file=config_file)
+        module_config = config_loader.get_module_config()
         # Assigning Variables from configurations
-        self.log_file = self.env_variables.get('LOG_FILE')+"."+self.current_datetime.strftime('%Y-%m-%d')+".log"
-        self.access_key = self.env_variables.get('API_KEY')
-        self.api_url = self.module_config.get("api_url")
-        self.end_point = self.module_config.get("end_point")
-        self.defaults_exchange_rate = self.common_config.get('defaults_exchange_rate', {})
-        self.days = self.defaults_exchange_rate.get('days')
-        self.base_currency = self.defaults_exchange_rate.get('base_currency')
-        self.target_currency = self.defaults_exchange_rate.get('target_currency')
-
-        # Calculate start and end dates for fetching data
-        self.start_date = (self.current_datetime - timedelta(days=self.days)).strftime('%Y-%m-%d')
-        self.end_date = self.current_datetime.strftime('%Y-%m-%d')
+        self.api_url = module_config.get("api_url")
+        self.end_point = module_config.get("end_point")
 
     def get_exchange_rates(self):
         """
@@ -47,16 +28,16 @@ class ExchangeRateFetcher:
 
         # Setup Logger
         script_name = os.path.basename(__file__)
-        logger = setup_logger(script_name, self.log_file)
+        logger = setup_logger(script_name, log_file)
         logger.info(f"Preparing Parameters for API request")
 
         # Prepare parameters for API request
         params = {
-            "access_key": self.access_key,
-            "start_date": self.start_date,
-            "end_date": self.end_date,
-            "base": self.base_currency,
-            "symbols": self.target_currency
+            "access_key": access_key,
+            "start_date": start_date,
+            "end_date": end_date,
+            "base": base_currency,
+            "symbols": target_currency
         }
         # Display parameters except for access_key
         params_for_log_display = dict(params)
@@ -71,7 +52,7 @@ class ExchangeRateFetcher:
             #data = response.json()
 
             data = {'success': True, 'timeseries': True, 'start_date': '2024-06-07', 'end_date': '2024-07-07', 'base': 'AUD',
-             'rates': {'2024-06-09': {'NZD': 1.07808},
+             'rates': {
                        '2024-06-10': {'NZD': 1.078204}, '2024-06-11': {'NZD': 1.075373},
                        '2024-06-12': {'NZD': 1.077024}, '2024-06-13': {'NZD': 1.076672},
                        '2024-06-14': {'NZD': 1.075134}, '2024-06-15': {'NZD': 1.073361},
