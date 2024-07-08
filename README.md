@@ -165,8 +165,10 @@ python main.py
 
 ## Testing
 Test files are located in the test directory
-- **These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test**
-- **There can be more test cases added**
+- **NOTE: These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test**
+- **NOTE: There can be more test cases added**
+- **NOTE: Test Cases can be made more robust so that it can be rerun for any date**
+  
 - test_exchange_rate_analyze.py
      -   test case 1: data retrieved correctly for configuration variable set to 4 days, AUD to NZD
      -   test case 2: whether code is flexible to fetch from different end point
