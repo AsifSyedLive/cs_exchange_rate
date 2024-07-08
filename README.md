@@ -184,7 +184,7 @@ The utils/logger.py script sets up the logging configuration. With this utility 
 
 ## Future Enhancements
 
-### License
+## License
 This project is available for educational and reference purposes. Feel free to review and examine the code to gain a better understanding of its functionality. If you intend to use any part of this project in your own work, please reach out to me for permission.
 
 For permission requests, please reach out to me at [asif.syed@live.com]
