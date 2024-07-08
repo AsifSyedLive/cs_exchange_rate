@@ -158,4 +158,18 @@ This script orchestrates fetching of exchange rates, preprocessing the data obta
 python main.py
 ```
 
+## Testing
+Test files are located in the test directory
+- **These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test**
+- **There can be more test cases added**
+- test_exchange_rate_analyze.py
+     -   test case 1: data retrieved correctly for configuration variable set to 4 days, AUD to NZD
+     -   test case 2: whether code is flexible to fetch from different end point
+     -   test case 3: whether code responds with error message when an invalid url is passed
+- test_exchange_rate_fetcher.py
+     -   test case 1: Check whether code fixes Missing date and interpolate corresponding value. This date is picked from middle of the list of dates.
+     -   test case 2: Check whether code fixes Missing date and interpolate corresponding value. This date is picked from left end of the list of dates.
+     -   test case 3: Check whether code fixes Missing date and interpolate corresponding value. This date is picked from right end of the list of dates.
+- test_exchange_rate_preprocess.py
+     -   test case 1: Validate whether analyze script is returning valid statistical results i.e. mean, min, max
 
