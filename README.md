@@ -17,15 +17,13 @@ This project provides tools to fetch, preprocess, and analyze exchange rate data
    - [Analyze Exchange Rates](#analyze-exchange-rates)
    - [Main Script](#main-script)
 5. [Testing](#testing)
-6. [Logging](#logging)
-7. [Utilities](#utilities)
+6. [Utilities](#utilities)
    - [Config Loader](#config-loader)
    - [Logger](#logger)
-8. [Limitations](#limitations)
-9. [Future Enhancements](#future-enhancements)
-10. [License](#license)
-11. [Contributing](#contributing)
-12. [Contact](#contact)
+7. [Future Enhancements](#future-enhancements)
+8. [License](#license)
+9. [Contributing](#contributing)
+10. [Contact](#contact)
 
 ## Project Structure
 ```bash
@@ -58,6 +56,7 @@ cs_exchange_rate-master/
 ### Prerequisites
 - Python 3.7 or later
 - Virtual environment (or any other python interpreter)
+- The current project requies access key (API Key) to https://api.exchangeratesapi.io
 
 ### Installation
 Clone the repository:
@@ -76,6 +75,7 @@ Install the dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
 ## Configuration
 
 ### Common Configuration
@@ -173,3 +173,13 @@ Test files are located in the test directory
 - test_exchange_rate_preprocess.py
      -   test case 1: Validate whether analyze script is returning valid statistical results i.e. mean, min, max
 
+## Utilities
+### Config Loader
+The utils/config_loader.py script provides utilities for loading configuration files. 
+It provides centralized way of accessing the configuration. 
+**We can have controls based on which script is fetching the configuration**
+
+### Logger
+The utils/logger.py script sets up the logging configuration. With this utility the loogs are written to a common file and can be configured for different log levels (DEBUG, INFO, ERROR, WARNINGS, CRITICAL, NOTSET).
+
+### Future Enhancements or Current Limitations
