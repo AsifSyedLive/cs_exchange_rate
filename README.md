@@ -182,4 +182,39 @@ It provides centralized way of accessing the configuration.
 ### Logger
 The utils/logger.py script sets up the logging configuration. With this utility the loogs are written to a common file and can be configured for different log levels (DEBUG, INFO, ERROR, WARNINGS, CRITICAL, NOTSET).
 
-### Future Enhancements or Current Limitations
+## Future Enhancements
+
+### License
+This project is available for educational and reference purposes. Feel free to review and examine the code to gain a better understanding of its functionality. If you intend to use any part of this project in your own work, please reach out to me for permission.
+
+For permission requests, please reach out to me at [asif.syed@live.com]
+
+## Contributing
+Thank you for considering contributing to this project! 
+
+As the initial author, I have developed this code with the help of resources searched online. Your contributions are welcome to help improve and expand the project.
+
+How to Contribute
+Fork the Repository: Create a personal copy of the repository by clicking the "Fork" button on GitHub.
+Clone the Repository: Clone your forked repository to your local machine.
+```bash
+git clone https://github.com/AsifSyedLive/cs_exchange_rate.git
+```
+Create a Branch: Create a new branch for your feature or bug fix.
+```bash
+git checkout -b feature-or-bugfix-name
+```
+Make Changes: Implement your changes and ensure your code follows the project's coding standards (PEP8 coding standards).
+Commit and Push: Commit your changes to your branch and push them to your forked repository.
+```bash
+git commit -m "Description of your changes"
+git push origin feature-or-bugfix-name
+```
+Open a Pull Request: Open a pull request from your branch to the main repository's main branch. Provide a clear and detailed description of your changes.
+
+Be respectful and considerate in your communication.
+
+## Contact
+If you have any questions, suggestions, or would like to request permission to use this project, feel free to reach out to me:
+
+- **Email**: asif.syed@live.com
