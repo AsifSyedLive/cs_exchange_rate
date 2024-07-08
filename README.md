@@ -35,6 +35,8 @@ cs_exchange_rate-master/
 │   ├── config_exchange_rate_analyze.json
 │   ├── config_exchange_rate_fetcher.json
 │   └── config_exchange_rate_preprocess.json
+├── docs/                         
+│   ├── Results/
 ├── exchange_rate/                  
 │   ├── __init__.py
 │   ├── exchange_rate_analyze.py
