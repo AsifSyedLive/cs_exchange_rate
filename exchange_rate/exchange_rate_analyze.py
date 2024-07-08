@@ -10,8 +10,14 @@ class ExchangeRateAnalyzer:
     def __init__(self, exchange_rate_dict):
         """
         Initialize the ExchangeRateAnalyzer
+
+        sample of argument - { '2024-07-09' : 1.0789, '2024-07-08' : 1.0785, ... and so on }
         """
+
+        # Generate the module configuration file name based on script name
         config_file = "config_" + os.path.splitext(os.path.basename(__file__))[0] + ".json"
+
+        # Create a ConfigLoader instance and load module specific configurations
         config_loader = ConfigLoader(module_config_file=config_file)
         module_config = config_loader.get_module_config()
 
@@ -20,13 +26,20 @@ class ExchangeRateAnalyzer:
         self.fig_width = module_config.get("fig_width")
         self.fig_height = module_config.get("fig_height")
 
-        # Initialize DataFrame from exchange_rate_data_dict
+        # Initialize DataFrame from exchange_rate_data_dict for ease in generating statistics later
         self.df = pd.DataFrame(list(exchange_rate_dict.items()), columns=['Date', 'Exchange Rate'])
+
         # Apply Data Type
         self.df['Date'] = pd.to_datetime(self.df['Date'])
         self.df['Exchange Rate'] = pd.to_numeric(self.df['Exchange Rate'])
 
     def get_statistics(self):
+        """
+        Calculate statistics for the exchange rate data
+
+        Returns:
+            Mean, median, standard deviation, minimum, and maximum of the exchange rates
+        """
         mean_rate = self.df['Exchange Rate'].mean()
         median_rate = self.df['Exchange Rate'].median()
         std_dev = self.df['Exchange Rate'].std()
@@ -36,6 +49,9 @@ class ExchangeRateAnalyzer:
         return mean_rate, median_rate, std_dev, min_rate, max_rate
 
     def trend_analysis(self):
+        """
+        Trend analysis on the exchange rate data
+        """
         self.df['Moving Average'] = self.df['Exchange Rate'].rolling(window=self.moving_average).mean()
         self.df['Rate of Change'] = self.df['Exchange Rate'].diff()
 
@@ -43,12 +59,16 @@ class ExchangeRateAnalyzer:
         """
         Visualization of Exchange Rate Data
         """
+
+        # Set up the logger for the script
         script_name = os.path.basename(__file__)
         logger = setup_logger(script_name, log_file)
         logger.info(f"Subplot 1 - Generation")
+
+        # Create a figure with specified dimensions
         plt.figure(figsize=(self.fig_width, self.fig_height))
 
-        #Executing Trend Analysis and Statistics before generating plot
+        # Executing Trend Analysis and Statistics before generating plot
         self.trend_analysis()
         mean_rate, median_rate, std_dev, min_rate, max_rate = self.get_statistics()
 
@@ -64,8 +84,11 @@ class ExchangeRateAnalyzer:
         plt.xticks(rotation=45)  # Rotate x-axis labels by 45 degrees
         plt.legend()
 
+        # Log the addition of statistical information to the plot
         logger.info(f"Adding statistics information to plot")
-
+        logger.info(f'Standard Deviation: {std_dev:.4f}'
+                    f'\nMin: {min_rate:.4f}\nMax: {max_rate:.4f}'
+                    f'\nMean: {mean_rate:.4f}\nMedian: {median_rate:.4f}')
 
         # To display text outside the plot area at the bottom of the figure
         fig = plt.gcf()

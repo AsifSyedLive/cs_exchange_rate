@@ -1,21 +1,27 @@
 import requests
 import os
 import sys
-
+# Import project utilities to assist logging and loading configurations
 from utils.config_loader import ConfigLoader
 from utils.logger import setup_logger
+# Import all modules from the current package
 from . import *
 
 
 class ExchangeRateFetcher:
     def __init__(self):
         """
-        Initialize the ExchangeRateFetcher with module level variables
+        Initialize the instance of the class ExchangeRateFetcher with module level variables
         """
+
+        # Generate the module configuration file name based on script name
         config_file = "config_" + os.path.splitext(os.path.basename(__file__))[0] + ".json"
+
+        # Create a ConfigLoader instance and load module specific configurations
         config_loader = ConfigLoader(module_config_file=config_file)
         module_config = config_loader.get_module_config()
-        # Assigning Variables from configurations
+
+        # Assigning API Url and end point from module configuration
         self.api_url = module_config.get("api_url")
         self.end_point = module_config.get("end_point")
 
@@ -39,10 +45,11 @@ class ExchangeRateFetcher:
             "base": base_currency,
             "symbols": target_currency
         }
+
         # Display parameters except for access_key
         params_for_log_display = dict(params)
         params_for_log_display.pop("access_key", None)
-        logger.info(f"Parameters for API request: {params_for_log_display}")
+        logger.debug(f"Parameters for API request: {params_for_log_display}")
 
         try:
             url = f"{self.api_url}/{self.end_point}"
