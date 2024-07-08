@@ -81,7 +81,8 @@ pip install -r requirements.txt
 ### Common Configuration
 The `config_common.json` file has settings shared across all modules like base currency and target currency, how many days from past data needs to be exchange rates needs to be fetched.
 Example:
-```json{
+```json
+{
   "defaults_exchange_rate": {
     "days": 30,
     "base_currency": "AUD",
@@ -91,9 +92,11 @@ Example:
 ```
 ### Module-specific Configuration
 Each script has its own configuration file:
-•	config_exchange_rate_analyze.json: Configuration variables for the analysis script.
-•	config_exchange_rate_fetcher.json: Configuration variables for the fetching script.
-•	config_exchange_rate_preprocess.json: Configuration variables for the preprocessing script.
+
+- config_exchange_rate_analyze.json: Configuration variables for the analysis script
+- config_exchange_rate_fetcher.json: Configuration variables for the fetching script
+- config_exchange_rate_preprocess.json: Configuration variables for the preprocessing script
+
 Here is an example for config_exchange_rate_fetcher.json:
 ```json
 {
@@ -101,4 +104,58 @@ Here is an example for config_exchange_rate_fetcher.json:
   "end_point": "timeseries"
 }
 ```
+### .env File
+The .env file contains environment variables used at PROJECT LEVEL, also SENSITIVE information.
+
+**This file is not be included in version control as it contains sensitive information such as API keys**
+
+Here is an example .env file:
+```bash
+PROJECT="cs_exchange_rate"
+BASE_PATH="C:\\Users\\asifs\\${PROJECT}"
+LOG_DIR="${BASE_PATH}\\log"
+LOG_FILE="${LOG_DIR}\\exchange_rate"
+API_KEY='xxxxxxxxxxxxxx'
+```
+## Usage
+### Fetch Exchange Rates
+To fetch exchange rates, run the exchange_rate_fetcher.py script
+```bash
+python exchange_rate/exchange_rate_fetcher.py
+```
+or it can be imported into another python script, later to call Classes/Functions from it.
+```bash
+from exchange_rate.exchange_rate_fetcher import *
+```
+This script retrieves exchange rate data from the specified API and returns json
+
+### Preprocess Exchange Rates
+To preprocess the fetched exchange rates i.e handle missing date entries and invalid rates (null), run the exchange_rate_preprocess.py script:
+
+python exchange_rate/exchange_rate_preprocess.py
+or it can be imported into another python script, later to call Classes/Functions from it.
+```bash
+from exchange_rate.exchange_rate_preprocess import *
+```
+This script ensures that there are no missing dates and interpolates any missing/invalid values. It returns a dictionary with dates and exchange rates.
+Interpolation is average of nearby values (previous and next)
+### Analyze Exchange Rates
+To analyze the processed exchange rates, run the exchange_rate_analyze.py script:
+```bash
+python exchange_rate/exchange_rate_analyze.py
+```
+or it can be imported into another python script, later to call Classes/Functions from it.
+```bash
+from exchange_rate.exchange_rate_analyze import *
+```
+This script performs various analyses on the exchange rate data such as calculating statictics (mean, min, max), calculating moving averages.
+It shows a visual report after execution.
+
+### Main Script
+The main.py script is the entry point to run the workflow. 
+This script orchestrates fetching of exchange rates, preprocessing the data obtained from API, and analyzing the exchange rate data
+```bash
+python main.py
+```
+
 
