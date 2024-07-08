@@ -3,9 +3,10 @@ import json
 from dotenv import load_dotenv
 from config import *
 
+
 class ConfigLoader:
     def __init__(self, env_file='.env', common_config_file='config_common.json', module_config_file=None):
-        self.env_file = env_file
+        self.env_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))+"/"+env_file
         self.common_config_file = os.path.join(os.path.dirname(__file__), '..', 'config', common_config_file)
         if module_config_file:
             self.module_config_file = os.path.join(os.path.dirname(__file__), '..', 'config', module_config_file)
@@ -48,5 +49,3 @@ class ConfigLoader:
 
     def get_module_config(self):
         return self.module_config
-
-
