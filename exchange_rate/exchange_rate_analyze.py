@@ -48,6 +48,10 @@ class ExchangeRateAnalyzer:
         logger.info(f"Subplot 1 - Generation")
         plt.figure(figsize=(self.fig_width, self.fig_height))
 
+        #Executing Trend Analysis and Statistics before generating plot
+        self.trend_analysis()
+        mean_rate, median_rate, std_dev, min_rate, max_rate = self.get_statistics()
+
         # Subplot 1: Exchange Rate and Moving Average
         plt.subplot(2, 1, 1)
         plt.plot(self.df['Date'], self.df['Exchange Rate'],
@@ -61,8 +65,7 @@ class ExchangeRateAnalyzer:
         plt.legend()
 
         logger.info(f"Adding statistics information to plot")
-        #  statistics
-        mean_rate, median_rate, std_dev, min_rate, max_rate = self.get_statistics()
+
 
         # To display text outside the plot area at the bottom of the figure
         fig = plt.gcf()

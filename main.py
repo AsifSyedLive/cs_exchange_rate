@@ -55,9 +55,6 @@ def main():
     # Create an instance of ExchangeRateAnalyzer
     analyzer = ExchangeRateAnalyzer(exchange_rate_processed)
 
-    # Perform trend analysis
-    analyzer.trend_analysis()
-
     # Visualize data
     analyzer.visualize_data()
 
