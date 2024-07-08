@@ -9,7 +9,7 @@ This project provides tools to fetch, preprocess, and analyze exchange rate data
    - [Installation](#installation)
 3. [Configuration](#configuration)
    - [Common Configuration](#common-configuration)
-   - [Script-specific Configuration](#script-specific-configuration)
+   - [Module-specific Configuration](#module-specific-configuration)
    - [.env File](#env-file)
 4. [Usage](#usage)
    - [Fetch Exchange Rates](#fetch-exchange-rates)
@@ -89,3 +89,16 @@ Example:
   }
 }
 ```
+### Module-specific Configuration
+Each script has its own configuration file:
+•	config_exchange_rate_analyze.json: Configuration variables for the analysis script.
+•	config_exchange_rate_fetcher.json: Configuration variables for the fetching script.
+•	config_exchange_rate_preprocess.json: Configuration variables for the preprocessing script.
+Here is an example for config_exchange_rate_fetcher.json:
+```json
+{
+  "api_url": "https://api.exchangeratesapi.io/v1",
+  "end_point": "timeseries"
+}
+```
+
