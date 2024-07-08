@@ -22,10 +22,11 @@ This project provides tools to fetch, preprocess, and analyze exchange rate data
 6. [Utilities](#utilities)
    - [Config Loader](#config-loader)
    - [Logger](#logger)
-7. [Future Enhancements](#future-enhancements)
-8. [License](#license)
-9. [Contributing](#contributing)
-10. [Contact](#contact)
+7. [Limitations](#Limitations)
+8. [Future Enhancements](#future-enhancements)
+9. [License](#license)
+10. [Contributing](#contributing)
+11. [Contact](#contact)
 
 ## Project Structure
 ```bash
@@ -190,6 +191,8 @@ It provides centralized way of accessing the configuration.
 
 ### Logger
 The utils/logger.py script sets up the logging configuration. With this utility the loogs are written to a common file and can be configured for different log levels (DEBUG, INFO, ERROR, WARNINGS, CRITICAL, NOTSET).
+
+## Limitations
 
 ## Future Enhancements
 
