@@ -1,7 +1,8 @@
 # Exchange Rates API Integration for Historical Analysis
 
 This project provides tools to fetch, preprocess, and analyze exchange rate data. These scripts are designed to address data challenges such as filling in missing dates and handling invalid values. Additionally, the project features robust logging and flexible configuration options to ensure seamless integration and ease of use.
-
+**Project Results**
+![Alt text](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/analysis.png)
 ## Table of Contents
 1. [Project Structure](#project-structure)
 2. [Setup](#setup)
