@@ -52,26 +52,13 @@ def main():
     processor = ExchangeRatePreProcessor(exchange_rate_json)
     exchange_rate_processed = processor.process_data()
 
+    print(exchange_rate_processed)
+
     # Create an instance of ExchangeRateAnalyzer
     analyzer = ExchangeRateAnalyzer(exchange_rate_processed)
 
     # Visualize data
     analyzer.visualize_data()
-
-
-    # Retrieve and print results
-    #min_date, min_rate, max_date, max_rate = analyzer.find_min_max_rates()
-    #average_rate = analyzer.calculate_average_rate()
-    #change_percentages = analyzer.calculate_percentage_change()
-
-    #print(f"Minimum rate on {min_date}: {min_rate}")
-    #print(f"Maximum rate on {max_date}: {max_rate}")
-    #print(f"Average rate: {average_rate}")
-
-    #print("\nPercentage change each day:")
-    #for date, change_percent in change_percentages.items():
-    #    print(f"{date}: {change_percent:.2f}%")
-
 
 if __name__ == "__main__":
     main()
