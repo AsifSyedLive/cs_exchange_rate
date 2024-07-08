@@ -198,7 +198,16 @@ The utils/logger.py script sets up the logging configuration. With this utility 
 - Error Handling and Logging: While basic error handling is implemented, more robust mechanisms can be added to handle unexpected scenarios.
 
 ## Future Enhancements
+- The project incorporates code to manage logging of errors, warnings, and debug messages. While the logging mechanism is built and showcased, additional implementation within each component is still to be done for every scenario. 
 
+- Module level configuation files allow overriding project level or across module configurations. The code can be updated to allow specific variables that can override all other configurations. 
+
+- Currently, the code handles exchange rates for one currency to another. It can be updated to support one currency to multiple exchange rates.
+
+- Python test scripts are provided to demonstrate test automation, but they need further development to be more robust.
+
+- The analysis can be enhanced by incorporating a machine learning model, such as linear regression. Including additional variables like socio-economic factors, political conditions, and the CPI index could yield better results.
+  
 ## License
 This project is available for educational and reference purposes. Feel free to review and examine the code to gain a better understanding of its functionality. If you intend to use any part of this project in your own work, please reach out to me for permission.
 
