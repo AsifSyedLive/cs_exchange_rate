@@ -193,6 +193,9 @@ It provides centralized way of accessing the configuration.
 The utils/logger.py script sets up the logging configuration. With this utility the loogs are written to a common file and can be configured for different log levels (DEBUG, INFO, ERROR, WARNINGS, CRITICAL, NOTSET).
 
 ## Limitations
+- Data Quality: The accuracy of the analysis is dependent on the quality and completeness of the data fetched from the API. If the API provides incomplete or inaccurate data, it may affect the results.
+- Performance: For large datasets i.e. if days more than 30 is configured, the performance may degrade.
+- Error Handling and Logging: While basic error handling is implemented, more robust mechanisms can be added to handle unexpected scenarios.
 
 ## Future Enhancements
 
