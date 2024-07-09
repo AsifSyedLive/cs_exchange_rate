@@ -38,6 +38,8 @@ cs_exchange_rate-master/
 │   └── config_exchange_rate_preprocess.json
 ├── docs/                         
 │   ├── Results/
+│   ├── ProjectDoc_ExchangeRates.docx
+│   ├── TestDoc_ExchangeRates.docx
 ├── exchange_rate/                  
 │   ├── __init__.py
 │   ├── exchange_rate_analyze.py
