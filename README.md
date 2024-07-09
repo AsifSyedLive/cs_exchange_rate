@@ -3,7 +3,7 @@
 This project provides tools to fetch, preprocess, and analyze exchange rate data. These scripts are designed to address data challenges such as filling in missing dates and handling invalid values. Additionally, the project features robust logging and flexible configuration options to ensure seamless integration and ease of use.
 
 **Project Results**
-![Alt text](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/analysis.png)
+![Alt text](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/Results/results_exchange_rate_analyze_output.png)
 ## Table of Contents
 1. [Project Structure](#project-structure)
 2. [Setup](#setup)
@@ -22,10 +22,11 @@ This project provides tools to fetch, preprocess, and analyze exchange rate data
 6. [Utilities](#utilities)
    - [Config Loader](#config-loader)
    - [Logger](#logger)
-7. [Future Enhancements](#future-enhancements)
-8. [License](#license)
-9. [Contributing](#contributing)
-10. [Contact](#contact)
+7. [Limitations](#Limitations)
+8. [Future Enhancements](#future-enhancements)
+9. [License](#license)
+10. [Contributing](#contributing)
+11. [Contact](#contact)
 
 ## Project Structure
 ```bash
@@ -35,6 +36,8 @@ cs_exchange_rate-master/
 │   ├── config_exchange_rate_analyze.json
 │   ├── config_exchange_rate_fetcher.json
 │   └── config_exchange_rate_preprocess.json
+├── docs/                         
+│   ├── Results/
 ├── exchange_rate/                  
 │   ├── __init__.py
 │   ├── exchange_rate_analyze.py
@@ -153,7 +156,7 @@ from exchange_rate.exchange_rate_analyze import *
 This script performs various analyses on the exchange rate data such as calculating statictics (mean, min, max), calculating moving averages.
 It shows a visual report after execution.
 
-![Alt text](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/analysis.png)
+![Alt text](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/Results/results_exchange_rate_analyze_output.png)
 
 
 ### Main Script
@@ -165,8 +168,10 @@ python main.py
 
 ## Testing
 Test files are located in the test directory
-- **These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test**
-- **There can be more test cases added**
+- **NOTE: These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test**
+- **NOTE: There can be more test cases added**
+- **NOTE: Test Cases can be made more robust so that it can be rerun for any date**
+  
 - test_exchange_rate_analyze.py
      -   test case 1: data retrieved correctly for configuration variable set to 4 days, AUD to NZD
      -   test case 2: whether code is flexible to fetch from different end point
@@ -187,8 +192,22 @@ It provides centralized way of accessing the configuration.
 ### Logger
 The utils/logger.py script sets up the logging configuration. With this utility the loogs are written to a common file and can be configured for different log levels (DEBUG, INFO, ERROR, WARNINGS, CRITICAL, NOTSET).
 
-## Future Enhancements
+## Limitations
+- Data Quality: The accuracy of the analysis is dependent on the quality and completeness of the data fetched from the API. If the API provides incomplete or inaccurate data, it may affect the results.
+- Performance: For large datasets i.e. if days more than 30 is configured, the performance may degrade.
+- Error Handling and Logging: While basic error handling is implemented, more robust mechanisms can be added to handle unexpected scenarios.
 
+## Future Enhancements
+- The project incorporates code to manage logging of errors, warnings, and debug messages. While the logging mechanism is built and showcased, additional implementation within each component is still to be done for every scenario. 
+
+- Module level configuation files allow overriding project level or across module configurations. The code can be updated to allow specific variables that can override all other configurations. 
+
+- Currently, the code handles exchange rates for one currency to another. It can be updated to support one currency to multiple exchange rates.
+
+- Python test scripts are provided to demonstrate test automation, but they need further development to be more robust.
+
+- The analysis can be enhanced by incorporating a machine learning model, such as linear regression. Including additional variables like socio-economic factors, political conditions, and the CPI index could yield better results.
+  
 ## License
 This project is available for educational and reference purposes. Feel free to review and examine the code to gain a better understanding of its functionality. If you intend to use any part of this project in your own work, please reach out to me for permission.
 
