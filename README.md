@@ -170,20 +170,20 @@ python main.py
 
 ## Testing
 - [Test Results](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/TestDoc_ExchangeRates.docx)
-- Manual Tests
-      - Clean Run – Execute main.py
-      - Check Output of Exchange Rate Fetcher (default)
-      - Check Output of Exchange Rate Fetcher (change date range)
-      - Check Output of Exchange Preprocess (one date/value missing)
-      - Check Output of Exchange Preprocess (date/value missing at left border)
-      - Check Output of Exchange Preprocess (date/value missing at right border)
-      - Check Output of Exchange Preprocess (multiple date/value)
-2.	Automated Test Cases
+### Manual Tests
+   - Clean Run – Execute main.py
+   - Check Output of Exchange Rate Fetcher (default)
+   - Check Output of Exchange Rate Fetcher (change date range)
+   - Check Output of Exchange Preprocess (one date/value missing)
+   - Check Output of Exchange Preprocess (date/value missing at left border)
+   - Check Output of Exchange Preprocess (date/value missing at right border)
+   - Check Output of Exchange Preprocess (multiple date/value)
+### Automated Test Cases
 Automated tests are to showcase the usage of unittest python package. These scripts are still to be enhanced to make them robust.
 Scripts for automated testing are located in the test directory. These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test
 - **NOTE: There can be more test cases added**
 
-      - Test Exchange Rate Fetcher
+    - Test Exchange Rate Fetcher
         -   test case 1: data retrieved correctly for configuration variable set to 4 days, AUD to NZD
         -   test case 2: whether code is flexible to fetch from different end point
         -   test case 3: whether code responds with error message when an invalid url is passed
@@ -210,7 +210,7 @@ The utils/logger.py script sets up the logging configuration. With this utility 
 - Error Handling and Logging: While basic error handling is implemented, more robust mechanisms can be added to handle unexpected scenarios.
 
 ## Future Enhancements
-- Python test scripts are provided to demonstrate test automation using **unittest** package, but they need further development to be more robust.
+- Python test scripts are provided to demonstrate test automation using **"unittest"** package, but they need further development to be more robust.
 
 - Currently as part of preprocessing step, only missing dates/values issues are fixed. This can be enhanced to format issues.
 
