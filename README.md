@@ -200,6 +200,8 @@ The utils/logger.py script sets up the logging configuration. With this utility 
 - Error Handling and Logging: While basic error handling is implemented, more robust mechanisms can be added to handle unexpected scenarios.
 
 ## Future Enhancements
+- Python test scripts are provided to demonstrate test automation using **unittest** package, but they need further development to be more robust.
+
 - Currently as part of preprocessing step, only missing dates/values issues are fixed. This can be enhanced to format issues.
 
 - The project incorporates code to manage logging of errors, warnings, and debug messages. While the logging mechanism is built and showcased, additional implementation within each component is still to be done for every scenario. 
@@ -207,8 +209,6 @@ The utils/logger.py script sets up the logging configuration. With this utility 
 - Module level configuation files allow overriding project level or across module configurations. The code can be updated to allow specific variables that can override all other configurations. 
 
 - Currently, the code handles exchange rates for one currency to another. It can be updated to support one currency to multiple exchange rates.
-
-- Python test scripts are provided to demonstrate test automation, but they need further development to be more robust.
 
 - The analysis can be enhanced by incorporating a machine learning model, such as linear regression. Including additional variables like socio-economic factors, political conditions, and the CPI index could yield better results.
   
