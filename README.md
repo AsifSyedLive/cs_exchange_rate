@@ -173,7 +173,7 @@ Test files are located in the test directory
 - **NOTE: These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test**
 - **NOTE: There can be more test cases added**
 - **NOTE: Test Cases can be made more robust so that it can be rerun for any date**
-- [Link Test](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/TestDoc_ExchangeRates.docx) to Test Results
+- [Test Results](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/TestDoc_ExchangeRates.docx)
   
 - test_exchange_rate_fetcher.py
      -   test case 1: data retrieved correctly for configuration variable set to 4 days, AUD to NZD
