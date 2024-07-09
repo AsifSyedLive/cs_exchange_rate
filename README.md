@@ -173,16 +173,17 @@ Test files are located in the test directory
 - **NOTE: These scripts show case how configuration files can be tapped and data can be mocked to verify results instead of changing the code or its configurations to test**
 - **NOTE: There can be more test cases added**
 - **NOTE: Test Cases can be made more robust so that it can be rerun for any date**
+- [Test Results](https://github.com/AsifSyedLive/cs_exchange_rate/blob/master/docs/TestDoc_ExchangeRates.docx)
   
-- test_exchange_rate_analyze.py
+- test_exchange_rate_fetcher.py
      -   test case 1: data retrieved correctly for configuration variable set to 4 days, AUD to NZD
      -   test case 2: whether code is flexible to fetch from different end point
      -   test case 3: whether code responds with error message when an invalid url is passed
-- test_exchange_rate_fetcher.py
+- test_exchange_rate_preprocess.py
      -   test case 1: Check whether code fixes Missing date and interpolate corresponding value. This date is picked from middle of the list of dates.
      -   test case 2: Check whether code fixes Missing date and interpolate corresponding value. This date is picked from left end of the list of dates.
      -   test case 3: Check whether code fixes Missing date and interpolate corresponding value. This date is picked from right end of the list of dates.
-- test_exchange_rate_preprocess.py
+- test_exchange_rate_analyze.py
      -   test case 1: Validate whether analyze script is returning valid statistical results i.e. mean, min, max
 
 ## Utilities
@@ -200,13 +201,15 @@ The utils/logger.py script sets up the logging configuration. With this utility 
 - Error Handling and Logging: While basic error handling is implemented, more robust mechanisms can be added to handle unexpected scenarios.
 
 ## Future Enhancements
+- Python test scripts are provided to demonstrate test automation using **unittest** package, but they need further development to be more robust.
+
+- Currently as part of preprocessing step, only missing dates/values issues are fixed. This can be enhanced to format issues.
+
 - The project incorporates code to manage logging of errors, warnings, and debug messages. While the logging mechanism is built and showcased, additional implementation within each component is still to be done for every scenario. 
 
 - Module level configuation files allow overriding project level or across module configurations. The code can be updated to allow specific variables that can override all other configurations. 
 
 - Currently, the code handles exchange rates for one currency to another. It can be updated to support one currency to multiple exchange rates.
-
-- Python test scripts are provided to demonstrate test automation, but they need further development to be more robust.
 
 - The analysis can be enhanced by incorporating a machine learning model, such as linear regression. Including additional variables like socio-economic factors, political conditions, and the CPI index could yield better results.
   
