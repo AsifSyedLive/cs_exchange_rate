@@ -200,6 +200,8 @@ The utils/logger.py script sets up the logging configuration. With this utility 
 - Error Handling and Logging: While basic error handling is implemented, more robust mechanisms can be added to handle unexpected scenarios.
 
 ## Future Enhancements
+- Currently as part of preprocessing step, only missing dates/values issues are fixed. This can be enhanced to format issues.
+
 - The project incorporates code to manage logging of errors, warnings, and debug messages. While the logging mechanism is built and showcased, additional implementation within each component is still to be done for every scenario. 
 
 - Module level configuation files allow overriding project level or across module configurations. The code can be updated to allow specific variables that can override all other configurations. 
